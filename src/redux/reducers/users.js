@@ -9,17 +9,19 @@ const initailState = {
 };
 
 const usersReducer = (state = initailState, action) => {
+  let object;
   switch (action.type) {
     case `${POST_USER}/fulfilled`:
+      object = `${Object.keys(action.payload)[0]} ${Object.values(action.payload.email)[0]}`;
       return {
         ...state,
-        message: 'Your account has been created',
+        message: object.includes('id') ? 'Your account has been created' : object,
         created: true,
       };
     case `${POST_USER}/rejected`:
       return {
         ...state,
-        message: `${Object.keys(action.payload)[0] + action.payload.name}`,
+        message: "Couldn't create your account",
         created: false,
       };
     default:
