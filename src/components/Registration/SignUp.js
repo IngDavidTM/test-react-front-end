@@ -2,11 +2,11 @@
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { postUser } from '../../redux/reducers/users';
+import { postUser } from '../../redux/reducers/createUsers';
 
 const SignUp = () => {
   const dispatch = useDispatch();
-  const userStatus = useSelector((state) => state.users);
+  const userStatus = useSelector((state) => state.usersCreate);
 
   const [userData, setUserData] = useState({
     name: '',
