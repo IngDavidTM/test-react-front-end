@@ -10,6 +10,7 @@ const initailState = {
 const loginReducer = (state = initailState, action) => {
   switch (action.type) {
     case `${POST_LOGIN}/fulfilled`:
+      localStorage.setItem('token', action.payload.token);
       return {
         ...state,
         token: action.payload.token,
