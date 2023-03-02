@@ -20,7 +20,7 @@ const usersReducer = (state = initailState, action) => {
       return {
         ...state,
         message: `${Object.keys(action.payload)[0] + action.payload.name}`,
-        conected: false,
+        created: false,
       };
     default:
       return state;
