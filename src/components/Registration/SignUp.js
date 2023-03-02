@@ -26,6 +26,8 @@ const SignUp = () => {
     e.preventDefault();
     if (userData.password !== userData.confirmPassword) {
       setError('Passwords do not match');
+    } else if (userData.email === '' || userData.password === '' || userData.confirmPassword === '' || userData.name === '') {
+      setError('Please fill all the fields');
     } else {
       setUserData({
         ...userData, name: '', email: '', password: '', confirmPassword: '',
@@ -46,7 +48,7 @@ const SignUp = () => {
           <input className="bg-gray-100 rounded-full px-4 py-2 mt-2 focus:outline-none focus:bg-white" name="confirmPassword" type="password" id="confirmPassword" placeholder="Confirm Password" onChange={handleChange} value={userData.confirmPassword} />
           <button type="submit" className="bg-green text-white font-semibold py-2 px-8 rounded-full mt-4 mt-26 sm:text-2xl" id="signupButton">SIGN UP</button>
           {userStatus.created && <h2 className="w-full h-full flex justify-center items-center bg-white rounded-full">{userStatus.message}</h2>}
-          {error && <h2 className="w-full h-full flex justify-center items-center bg-white rounded-full">{error}</h2>}
+          {error && <h2 className="w-full h-full flex justify-center items-center bg-red-400 rounded-full">{error}</h2>}
           {!userStatus.created && <h2 className="w-full h-full flex justify-center items-center bg-red-400 rounded-full">{userStatus.message}</h2>}
         </form>
         <div className="absolute top-0 left-5 sm:left-20 flex gap-4">
