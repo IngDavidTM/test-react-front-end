@@ -21,7 +21,7 @@ const usersReducer = (state = initailState, action) => {
     case `${POST_USER}/rejected`:
       return {
         ...state,
-        message: "Couldn't create your account",
+        message: "Couldn't create your account, there is a problem with the server",
         created: false,
       };
     default:
