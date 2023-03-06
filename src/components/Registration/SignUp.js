@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { postUser } from '../../redux/reducers/createUsers';
@@ -35,6 +35,9 @@ const SignUp = () => {
     }
   };
 
+  if (userStatus.created) {
+    return <Navigate to="/" replace />;
+  }
   return (
     <section className="signup">
       <div className="absolute bg-center bg-cover bg-home h-full w-full bg-orange bg-blend-multiply blur-sm" />

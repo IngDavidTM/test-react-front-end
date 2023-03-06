@@ -21,7 +21,7 @@ const usersReducer = (state = initailState, action) => {
     case `${POST_USER}/rejected`:
       return {
         ...state,
-        message: "Couldn't create your account, there is a problem with the server",
+        message: "Couldn't create your account",
         created: false,
       };
     default:
@@ -37,6 +37,11 @@ export const postUser = createAsyncThunk(POST_USER, async (user) => {
     },
     body: JSON.stringify(user),
   });
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || 'Unable to create user');
+  }
+
   return response.json();
 });
 
