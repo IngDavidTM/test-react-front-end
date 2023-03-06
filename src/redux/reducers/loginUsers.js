@@ -5,6 +5,8 @@ const POST_LOGIN = 'wheels_and_deals/login/POST_LOGIN';
 
 const initailState = {
   token: null,
+  signed: false,
+  message: null,
 };
 
 const loginReducer = (state = initailState, action) => {
@@ -14,11 +16,15 @@ const loginReducer = (state = initailState, action) => {
       return {
         ...state,
         token: action.payload.token,
+        signed: true,
+        message: 'Login Successful',
       };
     case `${POST_LOGIN}/rejected`:
       return {
         ...state,
         token: null,
+        signed: false,
+        message: 'Login Failed',
       };
     default:
       return state;
@@ -33,6 +39,11 @@ export const postLogin = createAsyncThunk(POST_LOGIN, async (user) => {
     },
     body: JSON.stringify(user),
   });
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || 'Unable to create user');
+  }
+
   return response.json();
 });
 

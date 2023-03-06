@@ -5,7 +5,7 @@ import { postLogin } from '../../redux/reducers/loginUsers';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const userLogin = useSelector((state) => state.loginUsers.token);
+  const userLogin = useSelector((state) => state.loginUsers);
 
   const [userData, setUserData] = useState({
     email: '',
@@ -31,7 +31,8 @@ const Login = () => {
           <input className="bg-gray-200 rounded-full px-4 py-2 mt-2 focus:outline-none focus:bg-white" name="email" type="email" id="email" placeholder="Email" onChange={handleChange} value={userData.email} />
           <input className="bg-gray-200 rounded-full px-4 py-2 mt-2 focus:outline-none focus:bg-white" name="password" type="password" id="password" placeholder="Password" onChange={handleChange} value={userData.password} />
           <button type="submit" className="bg-green text-white font-semibold py-2 px-8 rounded-full mt-4 mt-26 sm:text-2xl">LOGIN</button>
-          {userLogin && <p className="text-white">Login Successful</p>}
+          {userLogin.signed && <p className="text-white">{userLogin.message}</p>}
+          {userLogin.signed === false && <p className="text-white">{userLogin.message}</p>}
         </form>
         <div className="absolute top-0 left-5 sm:left-20 flex gap-4">
           <Link to="/">
