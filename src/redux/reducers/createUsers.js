@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const API_URL = 'http://localhost:3000/users';
+const API_URL = 'http://localhost:3000/api/users';
 const POST_USER = 'wheels_and_deals/users/POST_USER';
 
 const initailState = {

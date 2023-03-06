@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const API_URL = 'http://localhost:3000/reservations';
+const API_URL = 'http://localhost:3000/api/reservations';
 const DELETE_RESERVATION = 'wheels_and_deals/reservations/DELETE_RESERVATION';
 const ADD_RESERVATION = 'wheels_and_deals/reservations/ADD_RESERVATION';
 const GET_RESERVATIONS = 'wheels_and_deals/reservations/GET_RESERVATIONS';
