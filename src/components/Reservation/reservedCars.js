@@ -1,45 +1,16 @@
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getReservations } from '../../redux/reducers/reservation';
 import Car from './Car';
 
 const ReservedCars = () => {
-  const data = [
-    {
-      id: 1,
-      name: 'BMW',
-      photo: './cars/bmw.png',
-      date: '2021-10-10',
-      city: 'New York',
-      country: 'USA',
-      price: 100000,
-    },
-    {
-      id: 2,
-      name: 'Mercedes',
-      photo: './cars/mercedes.png',
-      date: '2021-12-10',
-      city: 'Quito',
-      country: 'Ecuador',
-      price: 200000,
-    },
-    {
-      id: 3,
-      name: 'Bugatti',
-      photo: './cars/bugatti.png',
-      date: '2022-10-10',
-      city: 'Santiago',
-      country: 'Chile',
-      price: 300000,
-    },
-    {
-      id: 4,
-      name: 'Lamborghini',
-      photo: './cars/lambo.png',
-      date: '2022-06-10',
-      city: 'Buenos Aires',
-      country: 'Argentina',
-      price: 400000,
-    },
-  ];
+  const data = useSelector((state) => state.reservations);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getReservations());
+  }, [dispatch]);
 
   return (
     <div className="reserved-cars">

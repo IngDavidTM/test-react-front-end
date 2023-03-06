@@ -10,9 +10,9 @@ const Home = () => {
         <div className="container mx-auto h-full flex flex-col justify-center items-center">
           <h1 className="text-5xl text-white font-bold">Wheels and Deals</h1>
           <p className="text-2xl text-white">Explore elite luxury and class</p>
-          <button type="button" className="bg-white text-black font-bold py-2 px-8 rounded-full mt-4">
+          <Link to="/reserved" type="button" className="bg-white text-black font-bold py-2 px-8 rounded-full mt-4">
             Explore
-          </button>
+          </Link>
         </div>
       </div>
       <div className="absolute top-0 right-20 flex gap-4">
