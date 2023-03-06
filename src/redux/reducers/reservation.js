@@ -5,7 +5,16 @@ const DELETE_RESERVATION = 'wheels_and_deals/reservations/DELETE_RESERVATION';
 const ADD_RESERVATION = 'wheels_and_deals/reservations/ADD_RESERVATION';
 const GET_RESERVATIONS = 'wheels_and_deals/reservations/GET_RESERVATIONS';
 
-const initailState = [];
+const initailState = [
+  {
+    city: null,
+    country: null,
+    date: null,
+    name: null,
+    photo: null,
+    price: null,
+  },
+];
 
 const reservationReducer = (state = initailState, action) => {
   switch (action.type) {
@@ -15,6 +24,8 @@ const reservationReducer = (state = initailState, action) => {
       return [...state, action.payload];
     case `${GET_RESERVATIONS}/fulfilled`:
       return action.payload;
+    case `${GET_RESERVATIONS}/rejected`:
+      return state;
     default:
       return state;
   }
@@ -32,7 +43,7 @@ export const addReservation = createAsyncThunk(ADD_RESERVATION, async (reservati
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Autorizarion: `Bearer ${sessionStorage.getItem('token')}`,
+      Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     },
     body: JSON.stringify(reservation),
   });
@@ -45,6 +56,11 @@ export const getReservations = createAsyncThunk(GET_RESERVATIONS, async () => {
       Authorization: `Bearer ${sessionStorage.getItem('token')}`,
     },
   });
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || 'Unable to render reservations');
+  }
+
   return response.json();
 });
 

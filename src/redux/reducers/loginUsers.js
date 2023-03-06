@@ -5,7 +5,7 @@ const POST_LOGIN = 'wheels_and_deals/login/POST_LOGIN';
 
 const initailState = {
   token: null,
-  signed: false,
+  signed: !!sessionStorage.getItem('token'),
   message: null,
 };
 
